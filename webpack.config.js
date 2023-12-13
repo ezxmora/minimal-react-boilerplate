@@ -12,7 +12,15 @@ module.exports = (env) => ({
         test: /\.(js|jsx)$/,
         exclude: /(node_modules)/,
         loader: 'babel-loader',
-        options: { presets: ['@babel/env', '@babel/preset-react'] },
+        options: {
+          presets: [
+            [
+              '@babel/preset-env',
+              { targets: { esmodules: true }, bugfixes: true, modules: false },
+            ],
+            ['@babel/preset-react', { runtime: 'automatic' }]
+          ]
+        },
       },
       {
         // Checks for .css or .scss files
